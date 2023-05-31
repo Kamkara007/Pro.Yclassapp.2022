@@ -75,3 +75,12 @@ group :test do
 end
 
 gem "friendly_id", "~> 5.5"
+
+
+############### ANALYTICS APP    ############
+#gem 'active_analytics'
+#gem 'crawler_detect'
+
+############### DEPLOYED APP    ############
+gem 'platform_sh_rails'
+gem 'unicorn', '~> 6.1', :group => :production
