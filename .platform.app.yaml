@@ -1,4 +1,4 @@
-name: 'yclassapp'
+name: 'yclassapps'
 type: "ruby:3.0"
 
 dependencies:
