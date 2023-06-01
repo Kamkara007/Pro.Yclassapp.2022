@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
- 
+
 
   ################## LEARN POD  ##########################
   get "new-article", to:"articles#new"

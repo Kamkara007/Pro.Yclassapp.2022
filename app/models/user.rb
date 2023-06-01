@@ -10,10 +10,10 @@ class User < ApplicationRecord
   has_many :levels
   has_many :materials
   has_many :statuts
+  has_many :articles
   has_many :exercises
   has_many :questions
   has_many :results
-  has_many :articles
       
     STATUS = ["plan gratuit", "plan premium"]
   
