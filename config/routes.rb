@@ -1,4 +1,27 @@
 Rails.application.routes.draw do
+ 
+
+  ################## LEARN POD  ##########################
+  get "new-article", to:"articles#new"
+  get "articles", to:"articles#index"
+  resources :articles, except: %i[:new, :index]
+
+  ################## COURSES  ##########################
+  get "new-course", to:"courses#new"
+  resources :courses, except:[:new]
+  
+  ################## STATUTS  ##########################
+  get "new-statut", to:"statuts#new"
+  resources :statuts, except:[:new]
+  
+  
+  ################## MATERIALS  ##########################
+  get "new-material", to:"materials#new"
+  resources :materials, except:[:new]
+  
+  ################## LEVELS  ##########################
+  get "new-level", to:"levels#new"
+  resources :levels, except:[:new]
   
   get "dashboard", to:'dashboard#index'
   get 'dashboard/home'
