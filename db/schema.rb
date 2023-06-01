@@ -137,6 +137,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_01_103735) do
     t.string "gender", default: "Femme"
     t.string "user_role", default: "Student", null: false
     t.string "slug", null: false
+    t.string "user_plan"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_users_on_email", unique: true

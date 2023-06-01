@@ -55,7 +55,7 @@
               <div class="py-2 max-w-md">
                 <div class="grid grid-cols-1 gap-2">
                   <span class="">Série:</span>
-                  <%#= f.select(:level_name, @levels.map{|level| [level.title]}, { prompt: "choisir" }, class:"ln-select border border-black") %>
+                  <%= f.select(:level_name, @levels.map{|level| [level.title]}, { prompt: "choisir" }, class:"ln-select border border-black") %>
                 </div>
               </div>
               <div class="max-w-md">
@@ -86,6 +86,7 @@
                 </div>
               </div>
               <%= f.hidden_field :user_role, value:"Student" %>
+              <%= f.hidden_field :user_plan, value:"plan gratuit" %>
 
               <div class="">
                 <%= render "devise/shared/error_messages", resource: resource %>
