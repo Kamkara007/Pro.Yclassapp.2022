@@ -52,7 +52,7 @@ class User < ApplicationRecord
       self.email = "#{self.matricule}@gmail.com"
       self.password = "#{self.contact}"
     else 
-        self.matricule = remove_last_digit(self.contact)
+        self.matricule = self.contact
     end
   end
 

@@ -11,9 +11,7 @@ class DashboardController < ApplicationController
   
   def home
     @LevelList = Level.all.ordered
-    @CityList = Citytown.all.ordered
     @MaterialList = Material.all.ordered
-    @SchoolList = School.all.ordered
   end
   
   def student
