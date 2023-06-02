@@ -23,8 +23,21 @@ Rails.application.routes.draw do
   get "new-level", to:"levels#new"
   resources :levels, except:[:new]
   
+
+
+  ################## DASHBOARD  ##########################
   get "dashboard", to:'dashboard#index'
-  get 'dashboard/home'
+  get "students", to:"dashboard#student"
+  get "enseignants", to:"dashboard#teacher"
+  get "ambassadors", to:"dashboard#ambassador"
+  get "dashboard", to:'dashboard#index'
+  get "params", to:'dashboard#home'
+  
+  ################## DASHBOARD  && EsPORT ##########################
+  get "export_student", to:"dashboard#export"
+  get "course_export", to:"dashboard#course"
+
+  
   
 
   ################## USERS  ##########################
