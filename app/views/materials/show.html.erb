@@ -1,15 +1,24 @@
-<div class="mx-auto md:w-2/3 w-full flex">
-  <div class="mx-auto">
-    <% if notice.present? %>
-      <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block" id="notice"><%= notice %></p>
-    <% end %>
+<% @title=@material.title %>
 
-    <%= render @material %>
-
-    <%= link_to 'Edit this material', edit_material_path(@material), class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
-    <div class="inline-block ml-2">
-      <%= button_to 'Destroy this material', material_path(@material), method: :delete, class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 font-medium" %>
+<!-- Navbar Items -->
+<%= render "homepage/shared/navbar" %>
+<div class="container md:mx-auto mt-20">
+    <div
+        class="flex flex-wrap md:flex-row flex-col">
+        <!-- Materials -->
+        <div class="w-full md:w-1/4 md:p-2 border">
+            <%= render "homepage/shared/materials", cached:true %>
+        </div>
+        <!-- Contents -->
+        <div class="w-full md:w-2/4 md:p-2">
+            <%= render "homepage/shared/chatbox", cached:true %>
+            <%= render "homepage/shared/contents", cached:true %>
+            <%= render "homepage/shared/contents", cached:true %>
+        </div>
+        <!-- User Profil-->
+        <div class="w-full md:w-1/4 p-2 hidden md:block border">
+            <%= render "homepage/shared/user_profil", cached:true %>
+        </div>
     </div>
-    <%= link_to 'Back to materials', materials_path, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
-  </div>
 </div>
+
