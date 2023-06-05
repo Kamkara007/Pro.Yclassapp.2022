@@ -7,7 +7,7 @@ class ApplicationController < ActionController::Base
 
     #After sign in
     def after_sign_in_path_for(resource)
-        root_path
+        feed_path
     end
     
     def after_sign_up_path_for(resource)

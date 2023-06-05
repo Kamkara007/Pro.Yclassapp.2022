@@ -14,7 +14,7 @@ relationships:
     postgresdatabase: 'dbpostgres:postgresql'
 
 # The size of the persistent disk of the application (in MB).
-disk: 1024
+disk: 2048
 
 
 # Set environment variables to adjust how Rails will run.
