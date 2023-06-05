@@ -44,9 +44,7 @@
                 <!-- Exercise correction Count -->
                 <div  class="flex ml-2 text-md font-semibold">
                     <%= turbo_frame_tag "feed_exercises_completed" do %>
-                        <%= link_to "https://wa.me/?text= #{truncate(strip_tags(feed_course.content.to_s.html_safe), length: 200)}...
-                            
-                            #{"    Lnclasse.com"} ", class:" flex " do %>
+                        <%= link_to root_path, class:" flex " do %>
                             <p class="ml-4 py-2 flex">
                                 <?xml version="1.0" encoding="utf-8"?>
                                 <!-- Uploaded to: SVG Repo, www.svgrepo.com, Generator: SVG Repo Mixer Tools -->
@@ -62,7 +60,7 @@
                                         </linearGradient>
                                     </defs>
                                 </svg>
-                                <span class="mx-2 mr-4">Partager</span>
+                                <span class="mx-2 mr-4">Redaction</span>
                             </p>
                         <% end %>                        
                     <% end %>                        
