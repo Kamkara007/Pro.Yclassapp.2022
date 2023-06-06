@@ -50,7 +50,9 @@ class DashboardController < ApplicationController
 
     def custom
       @user_list = User.all.ordered
+      @course_list = Course.all.ordered
       @student_list = @user_list.student_sign_up
+      @subcription_list = @student_list.user_plan
       @ambassador_list = @user_list.ambassador_sign_up
       @teacher_list = @user_list.teacher_sign_up
     end

@@ -20,7 +20,7 @@
                 </li>
 
                 <li>
-                    <%= link_to 'Invitations', "invitation" %>
+                    <%= link_to 'Inviter des amis', "invitation" %>
                 </li>
                 <div class="avatar py-2">
                     <% member_avatar = "#{[current_user.first_name.first, current_user.last_name.first].join('')}"  %>
@@ -55,7 +55,7 @@
             </li>
 
             <li>
-                <%= link_to 'Invitations', "invitation" %>
+                <%= link_to 'Inviter des amis', "invitation" %>
             </li>
         
             <div class="avatar">
@@ -83,7 +83,7 @@
                 </label>
             <% else %>
                 <%= link_to "invitation", class:"block px-2 py-1 mt-2 bg-white font-bold text-md rounded-lg  md:mt-0" do %>
-                    Gagnez Argent
+                    Inviter des Amis
                 <% end %>
             <% end %>
 

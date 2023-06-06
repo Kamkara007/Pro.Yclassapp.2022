@@ -12,7 +12,7 @@ class ApplicationRecord < ActiveRecord::Base
   scope :student_sign_up, -> { where("user_role = ?", "Student")}
   scope :teacher_sign_up, -> { where("user_role = ?", "Teacher")}
   scope :ambassador_sign_up, -> { where("user_role = ?", "Ambassador")}
-
+  scope :user_plan, -> {where("user_plan = ?", "paid")} 
   
   scope :select_level, -> { where("level = ?", current_user.level_name)}
   scope :daily_sign_up, -> { where("created_at >= ?", Time.zone.now.beginning_of_day)}
