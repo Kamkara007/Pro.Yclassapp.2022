@@ -9,22 +9,9 @@ Rails.application.routes.draw do
 
   ################## COURSES  ##########################
   get "new-course", to:"courses#new"
-  resources :courses, except:[:new]
 
-  resources :courses, only:[:show] do
-    resources :exercises, only:[:new, :create, :destroy, :edit, :update]
-    get "exercises", to:"exercises#index"
-  end
-
-  ############ Exercises  ###############
-  resources :exercises, except: [:new, :show, :edit, :create, :update, :destroy, :index] do
-    member do
-      delete 'delete', to: 'exercises#destroy'
-    end
-    resources :questions, only: [:new, :create, :destroy]
-    resources :results, only: [:new, :create]
-  end
-
+  get "/:slug", to:"courses#show", as:"course"
+  resources :courses, except:[:new, :show]
 
   
   ################## STATUTS  ##########################

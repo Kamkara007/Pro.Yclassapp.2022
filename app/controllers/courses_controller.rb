@@ -62,7 +62,7 @@ class CoursesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_course
-      @course = Course.friendly.find(params[:id])
+      @course = Course.friendly.find(params[:slug])
     end
 
     #set Level
