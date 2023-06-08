@@ -23,7 +23,7 @@ class ExercisesController < ApplicationController
 
   # POST /exercises or /exercises.json
   def create
-    @exercise =         @course.xercises.build(exercise_params)
+    @exercise =  @course.exercises.build(exercise_params)
     @exercise.user_id = current_user.id
     
 
@@ -68,7 +68,7 @@ class ExercisesController < ApplicationController
     end
 
     def set_course
-      @course = Course.friendly.find(params[:slug])
+      @course = Course.friendly.find(params[:course_id])
     end
 
     # Only allow a list of trusted parameters through.

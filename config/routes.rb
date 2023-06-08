@@ -13,7 +13,14 @@ Rails.application.routes.draw do
   get "/:slug", to:"courses#show", as:"course"
   resources :courses, except:[:new, :show]
 
-  
+  resources :courses, only:[:show] do
+    resources :exercises do
+      resources :questions, only: [:new, :create, :destroy]
+      resources :results, only: [:new, :create]
+    end
+  end
+
+
   ################## STATUTS  ##########################
   get "new-statut", to:"statuts#new"
   resources :statuts, except:[:new]
