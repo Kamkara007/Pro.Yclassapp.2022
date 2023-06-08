@@ -18,8 +18,8 @@ document.addEventListener('turbo:load', function() {
       const summaryDiv = this.parentElement;
       const fullContentDiv = summaryDiv.nextElementSibling;
 
-      summaryDiv.classList.add('hidden');
-      fullContentDiv.classList.remove('hidden');
+      summaryDiv.classList.add('hidden_feed_full_content');
+      fullContentDiv.classList.remove('hidden_feed_full_content');
     });
   });
 });
