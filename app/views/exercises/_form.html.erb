@@ -16,18 +16,17 @@
     <div class="my-5">
         <%= form.label :title , "titre de exercice" %>
         <br>
-        <small>je suis le message</small>
         <%= form.text_field :title, placeholder:"Ajouter le titre de exercice ...", class: "block rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
     </div>
-    <div class="my-5">
-        <%= form.label :"Type Exercise" %> <br>
-<%#= form.select :exercise_type, exercise::TYPE_EXERCISE, class: "block rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
-
+    <div class="mb-5">
+        <%= form.label :exercise_type, "Type exercice" %><br>
+        <%= form.select :exercise_type, options_for_select(["Choix Unique", "Redaction", "Option 3"]) %>
     </div>
+
 
 
     <div class="inline">
-        <%= form.submit "Enregistrez ", class: "rounded-lg py-3 px-5 bg-blue-600 text-white inline-block font-medium cursor-pointer" %>
+        <%= form.submit "Enregistrez ", class: "py-3 px-5 bg-blue-600 text-white inline-block font-medium cursor-pointer" %>
     </div>
 <% end %>
 
