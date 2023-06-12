@@ -10,8 +10,8 @@ Rails.application.routes.draw do
   ################## COURSES  ##########################
   get "new-course", to:"courses#new"
 
-  get "/:slug", to:"courses#show", as:"course"
-  resources :courses, except:[:new, :show]
+
+  resources :courses, except:[:new]
 
   resources :courses, only:[:show] do
     resources :exercises do
