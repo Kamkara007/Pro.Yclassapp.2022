@@ -1,6 +1,7 @@
 class Exercise < ApplicationRecord
   belongs_to :user
   belongs_to :course
+  has_many :questions, dependent: :destroy
 
 TYPE_EXERCISE=["Choix unique", "Redaction"]
   #Slugged concern
