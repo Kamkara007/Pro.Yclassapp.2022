@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_06_15_124153) do
+ActiveRecord::Schema[7.0].define(version: 2023_06_16_101808) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
@@ -53,8 +53,19 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_15_124153) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
+  create_table "answered_questions", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "question_id", null: false
+    t.uuid "answer_id", null: false
+    t.uuid "result_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["answer_id"], name: "index_answered_questions_on_answer_id"
+    t.index ["question_id"], name: "index_answered_questions_on_question_id"
+    t.index ["result_id"], name: "index_answered_questions_on_result_id"
+  end
+
   create_table "answers", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
-    t.text "content"
+    t.text "title"
     t.boolean "correct"
     t.uuid "question_id", null: false
     t.datetime "created_at", null: false
@@ -127,11 +138,20 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_15_124153) do
   end
 
   create_table "questions", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
-    t.text "content"
+    t.text "title"
     t.uuid "exercise_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["exercise_id"], name: "index_questions_on_exercise_id"
+  end
+
+  create_table "results", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "user_id", null: false
+    t.uuid "exercise_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["exercise_id"], name: "index_results_on_exercise_id"
+    t.index ["user_id"], name: "index_results_on_user_id"
   end
 
   create_table "statuts", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -175,6 +195,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_15_124153) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "answered_questions", "answers"
+  add_foreign_key "answered_questions", "questions"
+  add_foreign_key "answered_questions", "results"
   add_foreign_key "answers", "questions"
   add_foreign_key "articles", "users"
   add_foreign_key "courses", "users"
@@ -183,5 +206,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_15_124153) do
   add_foreign_key "levels", "users"
   add_foreign_key "materials", "users"
   add_foreign_key "questions", "exercises"
+  add_foreign_key "results", "exercises"
+  add_foreign_key "results", "users"
   add_foreign_key "statuts", "users"
 end

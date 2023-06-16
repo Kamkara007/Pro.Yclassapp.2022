@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :results
+  resources :questions
   resources :exercises
 
 
@@ -11,15 +13,18 @@ Rails.application.routes.draw do
   get "new-course", to:"courses#new"
 
 
-  resources :courses, except:[:new]
-
   resources :courses, only:[:show] do
-    resources :exercises do
-      resources :questions, only: [:new, :create, :destroy]
-      resources :results, only: [:new, :create]
-    end
+    resources :exercises
   end
 
+  
+  resources :exercises do
+    member do
+      delete 'delete', to: 'exercises#destroy'
+    end
+    resources :questions, only: [:new, :create, :destroy]
+    resources :results, only: [:new, :create]
+  end
 
   ################## STATUTS  ##########################
   get "new-statut", to:"statuts#new"

@@ -19,8 +19,8 @@
         <%= form.text_field :title, placeholder:"Ajouter le titre de exercice ...", class: "block rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
     </div>
     <div class="mb-5">
-        <%= form.label :exercise_type, "Type exercice" %><br>
-        <%= form.select :exercise_type, options_for_select(["Choix Unique", "Redaction", "Option 3"]) %>
+        <%#= form.label :exercise_type, "Type exercice" %><br>
+        <%#= form.select :exercise_type, options_for_select(["Choix Unique", "Redaction", "Option 3"]) %>
     </div>
 
 
@@ -29,4 +29,3 @@
         <%= form.submit "Enregistrez ", class: "py-3 px-5 bg-blue-600 text-white inline-block font-medium cursor-pointer" %>
     </div>
 <% end %>
-
