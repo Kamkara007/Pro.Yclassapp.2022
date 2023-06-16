@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  
   resources :results
   resources :questions
   resources :exercises
@@ -62,6 +63,11 @@ Rails.application.routes.draw do
   get "team-sign-up" , to:'membership#teamUp'
   get "team-sign-in" , to:'membership#teamIn'  
   
+
+  ################## USERS  ##########################
+  match "/404", to:'errors#not_found', via: :all
+  match "/422", to:'errors#unacceptable', via: :all
+  match "/500", to:'errors#internal_error', via: :all
 
   ################## USERS  ##########################
   devise_scope :user do
