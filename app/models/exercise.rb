@@ -1,32 +1,34 @@
 class Exercise < ApplicationRecord
+  #############  RELATIONS ##############
   belongs_to :user
   belongs_to :course
   has_many :questions, dependent: :destroy
 
-TYPE_EXERCISE=["Choix unique", "Redaction"]
-  #Slugged concern
+  #############  SLUGGED ##############
   include ItemsSlugged
 
-  # Valide que les noms ont été assignés
+  
+  #############  VALIDATIONS ##############
   validates :title, presence: { message: "Le titre est obligatoire" }
   validates :user_id, presence: { message: "L'exercice doit etre associer obligatoirement a une personne" }
   validates :course_id, presence: { message: "L'exercice doit etre associer obligatoirement a une leçon" }
   
-  #############  Scopes ##############
+  #############  SCOPE ##############
   scope :ready, -> { where("published == true")}
   scope :chrono, -> { order(created_at: :desc)}
   
-  ########### completed exercice  #########
+  ########### FIND EXERCISE COMPLETED BY USER #########
   def completed_by(user)
     results.any? {|result| result.user == user}
   end
   
-  ########### user grade  #########
+  
+  ############ BUILD USER GRADE ###################
   def user_grade(user)
     results.where(user_id: user).last.grade()
   end
 
-  ############ Result ###################
+  ############ BUILD RESULT ###################
   def build_result
     result = self.results.build()
     self.questions.each {|exercise| result.answered_questions.build(question: exercise)}

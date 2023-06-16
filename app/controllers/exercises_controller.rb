@@ -5,7 +5,7 @@ class ExercisesController < ApplicationController
 
   # GET /exercises or /exercises.json
   def index
-    @exercises = Exercise.all
+    @exercises = Exercise.all.ordered
   end
 
   # GET /exercises/1 or /exercises/1.json
@@ -15,6 +15,7 @@ class ExercisesController < ApplicationController
   # GET /exercises/new
   def new
     @exercise = @course.exercises.build
+    
   end
 
   # GET /exercises/1/edit
@@ -29,7 +30,7 @@ class ExercisesController < ApplicationController
 
     respond_to do |format|
       if @exercise.save
-        format.html { redirect_to exercise_url(@exercise), notice: "Exercise was successfully created." }
+        format.html { redirect_to new_exercise_question_path(@exercise), notice: "Exercise was successfully created." }
         format.json { render :show, status: :created, location: @exercise }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -70,7 +71,7 @@ class ExercisesController < ApplicationController
     def set_course
       @course = Course.friendly.find(params[:course_id])
     end
-
+    
     # Only allow a list of trusted parameters through.
     def exercise_params
       params.require(:exercise).permit(:title, :slug, :exercise_type, :user_id, :course_id)

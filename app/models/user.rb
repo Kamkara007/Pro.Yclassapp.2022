@@ -14,6 +14,7 @@ class User < ApplicationRecord
   has_many :exercises
   has_many :questions
   has_many :results
+
       
     STATUS = ["plan gratuit", "plan premium"]
   
