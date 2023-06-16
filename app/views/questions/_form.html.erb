@@ -20,12 +20,9 @@
       <!-- render questions -->
       <%= render 'answer_fields', :f => f %>
     </div>
-    <div class="mt-4">
-      <%= f.text_field :content, placeholder: "> Explication ...", class:"ln--field" %>
-    </div>
 
     <div class="flex my-2">
-      <%= f.submit "Question Suivante", class:"flex bg-blue-600 p-2 text-white font-bold rounded-md" %>
+      <%= f.submit "Add Question", class:"flex bg-blue-600 p-2 text-white font-bold rounded-md" %>
       <%= link_to 'Annuler', root_path, class: "flex bg-green-400  p-2 text-white font-bold ml-4 rounded-md" %>
     </div>
 </div>
