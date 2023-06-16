@@ -1,4 +1,5 @@
-<%= form_with(model: question, class: "contents") do |form| %>
+<%= form_with(model: question, url: [@exercise, @question], class: "contents") do |f| %>
+
   <% if question.errors.any? %>
     <div id="error_explanation" class="bg-red-50 text-red-500 px-3 py-2 font-medium rounded-lg mt-3">
       <h2><%= pluralize(question.errors.count, "error") %> prohibited this question from being saved:</h2>
@@ -11,17 +12,33 @@
     </div>
   <% end %>
 
-  <div class="my-5">
-    <%= form.label :title %>
-    <%= form.text_area :title, rows: 4, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
-  </div>
+<div class="border rounded-md  p-2">
+    <%= f.hidden_field :exercise_id, value: @exercise.id %>
+    <%= f.text_field :title, placeholder: "> Question ...", class:"ln--field " %>
 
-  <div class="my-5">
-    <%= form.label :exercise_id %>
-    <%= form.text_field :exercise_id, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
-  </div>
+    <div class="my-2">
+      <!-- render questions -->
+      <%= render 'answer_fields', :f => f %>
+    </div>
+    <div class="mt-4">
+      <%= f.text_field :content, placeholder: "> Explication ...", class:"ln--field" %>
+    </div>
 
-  <div class="inline">
-    <%= form.submit class: "rounded-lg py-3 px-5 bg-blue-600 text-white inline-block font-medium cursor-pointer" %>
-  </div>
+    <div class="flex my-2">
+      <%= f.submit "Question Suivante", class:"flex bg-blue-600 p-2 text-white font-bold rounded-md" %>
+      <%= link_to 'Annuler', root_path, class: "flex bg-green-400  p-2 text-white font-bold ml-4 rounded-md" %>
+    </div>
+</div>
+
 <% end %>
+
+<div class="questions-column mt-8">
+
+    <% if @exercise.questions.any? %>
+        <div class="my-2">
+            <%= render 'added_questions', record: @exercise %>
+        </div>
+    <% else %>
+        <p>Ajouter les questions!</p>
+    <% end %>
+</div>

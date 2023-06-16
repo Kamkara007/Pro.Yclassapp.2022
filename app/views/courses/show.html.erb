@@ -1,9 +1,11 @@
-<div id="<%= dom_id @course %>" class="container mx-auto w-full flex">
+<%= render "homepage/shared/navbar" %>
+
+<div id="<%= dom_id @course %>" class="mx-auto md:w-2/3 w-full pt-28">
     <%= turbo_frame_tag dom_id(@course) do %>
         <% @title=@course.title %>
         <div class="card bg-white p-2">
 
-            <div class="font-bold ">
+            <div class="font-bold text-xl md:text-2xl ">
                 <%= @course.title %>
             </div>
             <div
@@ -48,13 +50,13 @@
             <div class="flex">
                 <%= link_to 'Nouvel Exercice',
                     new_course_exercise_path(@course),
-                    data:{ turbo_frame:"add_exercise_form"},
+                    #data:{ turbo_frame:"add_exercise_form"},
                     class:"bg-blue-600 font-semibold text-white p-3" %>
             </div>
         </div>
 
         <!-- New Exercise Form-->
-        <%= turbo_frame_tag "add_exercise_form" %>
+        <%#= turbo_frame_tag "add_exercise_form" %>
         
 
 
@@ -62,7 +64,7 @@
         <div
             class="border bg-white m-2">
             <!-- Exercises New Form-->
-            <%#= turbo_frame_tag dom_id(Exercise.new) %>
+            <%= turbo_frame_tag dom_id(Exercise.new) %>
             <!-- Exercises feed-->
             <%= render "courses/shared/exercises", course:@course %>
         </div>

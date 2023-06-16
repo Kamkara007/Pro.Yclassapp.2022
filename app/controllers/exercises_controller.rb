@@ -27,7 +27,6 @@ class ExercisesController < ApplicationController
     @exercise =  @course.exercises.build(exercise_params)
     @exercise.user_id = current_user.id
     
-
     respond_to do |format|
       if @exercise.save
         format.html { redirect_to new_exercise_question_path(@exercise), notice: "Exercise was successfully created." }

@@ -3,6 +3,7 @@ class Exercise < ApplicationRecord
   belongs_to :user
   belongs_to :course
   has_many :questions, dependent: :destroy
+  has_many :results, dependent: :destroy
 
   #############  SLUGGED ##############
   include ItemsSlugged

@@ -5,8 +5,18 @@
   </p>
 
   <p class="my-5">
+    <strong class="block font-medium mb-1">Content:</strong>
+    <%= question.content %>
+  </p>
+
+  <p class="my-5">
     <strong class="block font-medium mb-1">Exercise:</strong>
     <%= question.exercise_id %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">User:</strong>
+    <%= question.user_id %>
   </p>
 
   <% if action_name != "show" %>

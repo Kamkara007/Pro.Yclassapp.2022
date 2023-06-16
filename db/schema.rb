@@ -140,9 +140,11 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_16_101808) do
   create_table "questions", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.text "title"
     t.uuid "exercise_id", null: false
+    t.uuid "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["exercise_id"], name: "index_questions_on_exercise_id"
+    t.index ["user_id"], name: "index_questions_on_user_id"
   end
 
   create_table "results", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -206,6 +208,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_16_101808) do
   add_foreign_key "levels", "users"
   add_foreign_key "materials", "users"
   add_foreign_key "questions", "exercises"
+  add_foreign_key "questions", "users"
   add_foreign_key "results", "exercises"
   add_foreign_key "results", "users"
   add_foreign_key "statuts", "users"

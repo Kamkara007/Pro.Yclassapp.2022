@@ -1,27 +1,23 @@
-<%= form_with(model: result, class: "contents") do |form| %>
-  <% if result.errors.any? %>
-    <div id="error_explanation" class="bg-red-50 text-red-500 px-3 py-2 font-medium rounded-lg mt-3">
-      <h2><%= pluralize(result.errors.count, "error") %> prohibited this result from being saved:</h2>
 
-      <ul>
-        <% result.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
+<h2 class="font-bold text-xl pb-2"> <%= @result.exercise.title %></h2>
+<%= form_for(@result, url: exercise_results_path(@result.exercise)) do |f| %>
 
-  <div class="my-5">
-    <%= form.label :user_id %>
-    <%= form.text_field :user_id, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
-  </div>
-
-  <div class="my-5">
-    <%= form.label :exercise_id %>
-    <%= form.text_field :exercise_id, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
-  </div>
-
-  <div class="inline">
-    <%= form.submit class: "rounded-lg py-3 px-5 bg-blue-600 text-white inline-block font-medium cursor-pointer" %>
-  </div>
+<%= f.hidden_field :exercise_id %>
+  <ol class = "bg-gray-200 text-black" > 
+    <%= f.fields_for :answered_questions do |aq| %>
+        <%= aq.hidden_field :question_id %> 
+      <li clas="flex"> 
+          <%= aq.collection_radio_buttons( :answer_id, aq.object.question.answers, :id, :title) do |b| %>
+              <div class ="border p-2 my-2 text-black font-bold " >
+                <%= b.radio_button %>
+                <%= b.label %>
+              </div>
+          <% end %>
+          <div class="p-4" > 
+            <%= aq.object.question.content %> 
+          </div>
+      </li>
+    <% end %>
+  </ol >
+  <%= f.submit "Vérifions l'exercice", class:"bg-blue-400 rounded-md p-2 text-white font-semibold" %>
 <% end %>

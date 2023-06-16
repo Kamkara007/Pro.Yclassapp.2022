@@ -12,11 +12,10 @@ Rails.application.routes.draw do
   ################## COURSES  ##########################
   get "new-course", to:"courses#new"
 
-
+  resources :courses, except:[:new, :show]
   resources :courses, only:[:show] do
     resources :exercises
   end
-
   
   resources :exercises do
     member do
@@ -25,6 +24,8 @@ Rails.application.routes.draw do
     resources :questions, only: [:new, :create, :destroy]
     resources :results, only: [:new, :create]
   end
+
+  
 
   ################## STATUTS  ##########################
   get "new-statut", to:"statuts#new"
