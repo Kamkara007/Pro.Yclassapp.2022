@@ -95,7 +95,7 @@ module ApplicationHelper
         elsif current_user.user_role == "Teacher"
         return "teacher"
         elsif current_user.user_role == "Ambassador"
-        return "ambassador"
+        return "am"
         elsif current_user.user_role == "Team"
         return "team"
         else

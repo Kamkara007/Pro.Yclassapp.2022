@@ -13,8 +13,8 @@ module DeviseWhitelist
     def configure_permitted_parameters
         #Sign Up account params
         sign_params = [:email, :password, :first_name, :last_name, :full_name, :contact, :matricule,
-            :user_role, :gender, :city_name, :level_name, :school_name, :media_name, :material_name,
-            :doublant_statut, :doublant_statut, :avatar, :slug, ]
+            :user_role, :gender, :city_name, :level_name, :school_name,  :material_name,
+            :doublant_statut, :doublant_statut, :avatar, :slug, :referral_code ]
 
         devise_parameter_sanitizer.permit(:sign_in, keys: [:logged, :password])
         devise_parameter_sanitizer.permit(:sign_up, keys: sign_params )

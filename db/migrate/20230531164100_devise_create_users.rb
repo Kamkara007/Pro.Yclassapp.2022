@@ -46,7 +46,8 @@ class DeviseCreateUsers < ActiveRecord::Migration[7.0]
       t.string :user_role, null: false, default: "Student"
       t.string :slug, null:false
       t.string :user_plan
-      #t.boolean :doublant_statut, null: false, default: "Non Doublant"
+      t.string :referral_code
+      #t.boolean :doublant_statut, null: true, default: "Non Doublant"
       #t.boolean :candidat_statut, null: false, default: "Officiel"
 
       t.timestamps null: false
