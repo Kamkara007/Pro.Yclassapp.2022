@@ -1,6 +1,7 @@
 class Statut < ApplicationRecord
+  ################# RELATIONS ##################
   belongs_to :user
 
-  #Slugged concern
+  ################# SLUGGED ##################
   include ItemsSlugged
 end

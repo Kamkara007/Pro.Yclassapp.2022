@@ -49,20 +49,65 @@ class DashboardController < ApplicationController
   private
 
     def custom
-      @user_list = User.all.ordered
-      @course_list = Course.all.ordered
-      @student_list = @user_list.student_sign_up
+      
+     
       @subcription_list = @student_list.user_plan
-      @ambassador_list = @user_list.ambassador_sign_up
-      @teacher_list = @user_list.teacher_sign_up
     end
 
+    ## COURSE'S LIST
+    def courses
+      @course = Course.all.ordered
+    end
+
+    ## ARTICLE'S LIST
+    def articles
+      @articles = Article.all.ordered
+    end
+    ## ARTICLES FOR AMBASSADOR
+    def ambassador_articles
+      @ambassador_articles = @articles.ambassador_article
+    end 
+
+    ## STUDENT'S LIST
+    def students
+      @student = User.student_sign_up.ordered
+    end
+
+    ## STUDENT'S PAID
+    def student_paid
+      @students_paid = @student.user_plan.ordered
+    end
+
+    ## STUDENT'S PAID REFERRAL
+    def student_paid
+      @students_paid = @student.referral_code.ordered
+    end
+    ## TEACHER'S LIST
+    def teacher
+      @teacher = User.teacher_sign_up.ordered
+    end
+
+    ## AMBASSADOR'S LIST
+    def ambassadors
+      @student = User.ambassador_sign_up.ordered
+    end
+
+    ## STUDENT'S REFERRAL BY AMBASSADOR
+    def referral_counted
+      @count_student_referral = @student.referral_code
+    end
+
+    ## STUDENT'S UNAUTHORIZED
     def student_unauthorized
       redirect_to root_path if current_user.user_role == "Student"
     end
-
     
+    ## TEAM'S UNAUTHORIZED
     def team_authorized
       redirect_to root_path if current_user.user_role != "Team"
+    end
+    ## AMBASSADOR'S UNAUTHORIZED
+    def ambassador_authorized
+      redirect_to root_path if current_user.user_role != "Ambassador"
     end
 end

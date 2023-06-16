@@ -1,6 +1,8 @@
 class Material < ApplicationRecord
+  
+  ################# RELATIONS ##################
   belongs_to :user
 
-  #Slugged concern
+  ################# SLUGGED ##################
   include ItemsSlugged
 end

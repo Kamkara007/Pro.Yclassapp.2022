@@ -15,27 +15,21 @@ class User < ApplicationRecord
   has_many :questions
   has_many :results
 
-      
-    STATUS = ["plan gratuit", "plan premium"]
   
   #include UserLogged
   #include UserReferral
   #enum :role, student: "student", teacher: "teacher", team: "team", default: "student"
   
-  
+  ######################### VALIDATIONS ################
   before_validation :strip_custom_data, :strip_fields, :full_name#, :user_referral_id
-
-  
   validates :first_name, :last_name, :full_name, :email, :password,
               :contact, :user_role, :city_name, presence: true
-
   validates :contact, uniqueness: true, numericality: { only_integer: true }, length: { is:10,
               message: "verifier que votre nom numéro est 10 chiffres"}
- 
-              
-   validates :user_role, inclusion: { in: %w(Student Teacher Team Ambassador),
+
+  validates :user_role, inclusion: { in: %w(Student Teacher Team Ambassador),
                     message: "%{value} acces non identifier" }
-                    
+
   #validates :user_referral_id, presence: true,
   #                            uniqueness: true,
   #                            format: { with: /\A[0-9]{5}[A-Z]\z/,
@@ -44,7 +38,7 @@ class User < ApplicationRecord
   #validates :referral_code,  format: { with: /\A[0-9]{5}[A-Z]\z/,
   #                            message: "should be 6 digits and 1 uppercase letter" }
                               
-  ################  Custom data of User ###########
+  ################  CUSTOM USER'S DATA ###########
   def strip_custom_data
     self.contact = contact.gsub(/\s+/, "")
     if self.user_role == "Student"
@@ -62,7 +56,7 @@ class User < ApplicationRecord
     #self.user_referral_id = "#{SecureRandom.random_number(10**5).to_s.rjust(5,'0') + ('A'..'Z').to_a.sample}".gsub(/\s+/, "")
   end
 
-  ################  Contact ###########
+  ################  CONTACTS ###########
   def strip_fields
     #Delete espace into fields
     self.contact = contact.gsub(/\s+/, "")
@@ -70,12 +64,12 @@ class User < ApplicationRecord
   end
 
 
-  ################  Full name ###########
+  ################ FULL NAME ###########
   def full_name
     self.full_name = "#{self.first_name} #{self.last_name}" 
   end 
 
-################## SLUG ###############
+################## SLUGGED ###############
   extend FriendlyId
   friendly_id :user_slugged, use: :slugged
   
@@ -97,16 +91,18 @@ class User < ApplicationRecord
   end
 
 
-  ################## End Logged  #########
-      attr_writer :logged
-
+  ##################  START LOGGED  #########
+  attr_writer :logged
+  
   
   ################## LOGGED  #########
-  #permet la connexion avec le matricule
+
+  ## permet la connexion avec le matricule
   def logged
     @logged || self.matricule || self.email
   end
-  
+
+  ## recherche matricule ou email pour la connexion
   def self.find_for_database_authentication(warden_conditions)
     conditions = warden_conditions.dup
     if (logged = conditions.delete(:logged))
@@ -115,4 +111,5 @@ class User < ApplicationRecord
       where(conditions.to_h).first
     end
   end
+  ##################  END LOGGED  #########
 end
