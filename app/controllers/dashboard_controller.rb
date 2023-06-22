@@ -2,9 +2,13 @@ require 'csv'
 
 class DashboardController < ApplicationController
   
-  before_action :authenticate_user!, :student_unauthorized
-  before_action :custom, except: %i[home]
-  before_action :team_authorized, only: %i[index export course]
+  before_action :authenticate_user!
+  before_action :courses, :articles, :ambassador_articles, :referral_counted,
+                :students, :students_paid, :teachers, :ambassadors
+
+  before_action :student_unauthorized #unauthorized student to visite dashboard
+  before_action :ambassador_unauthorized, except: %i[ambassador] #authorized Ambassador to visite dashboard#mabassador
+  before_action :teacher_unauthorized, except: %i[enseignant] #authorized Teacher to visite dashboard#enseignant
   
   def index
   end
@@ -48,66 +52,61 @@ class DashboardController < ApplicationController
   
   private
 
-    def custom
-      
-     
-      @subcription_list = @student_list.user_plan
-    end
-
     ## COURSE'S LIST
     def courses
-      @course = Course.all.ordered
+      @courses = Course.all.ordered
     end
 
     ## ARTICLE'S LIST
     def articles
       @articles = Article.all.ordered
     end
+
     ## ARTICLES FOR AMBASSADOR
     def ambassador_articles
-      @ambassador_articles = @articles.ambassador_article
+      @ambassador_articles = @articles.all#ambassador_article
     end 
-
     ## STUDENT'S LIST
     def students
       @student = User.student_sign_up.ordered
     end
-
+    
     ## STUDENT'S PAID
-    def student_paid
+    def students_paid
       @students_paid = @student.user_plan.ordered
     end
-
-    ## STUDENT'S PAID REFERRAL
-    def student_paid
-      @students_paid = @student.referral_code.ordered
-    end
+    
     ## TEACHER'S LIST
-    def teacher
+    def teachers
       @teacher = User.teacher_sign_up.ordered
     end
-
+    
     ## AMBASSADOR'S LIST
     def ambassadors
       @student = User.ambassador_sign_up.ordered
     end
-
+    
     ## STUDENT'S REFERRAL BY AMBASSADOR
     def referral_counted
-      @count_student_referral = @student.referral_code
+     # @count_student_referral = @student.referral_code
+    end
+
+    ## STUDENT'S PAID REFERRAL
+    def student_paid
+      @students_paid = @student.user_plan.referral_code.ordered
     end
 
     ## STUDENT'S UNAUTHORIZED
     def student_unauthorized
-      redirect_to root_path if current_user.user_role == "Student"
+      redirect_to root_path if current_user.user_role == "student"
     end
     
     ## TEAM'S UNAUTHORIZED
-    def team_authorized
-      redirect_to root_path if current_user.user_role != "Team"
+    def teacher_unauthorized
+      redirect_to root_path if current_user.user_role == "teacher"
     end
     ## AMBASSADOR'S UNAUTHORIZED
-    def ambassador_authorized
-      redirect_to root_path if current_user.user_role != "Ambassador"
+    def ambassador_unauthorized
+      redirect_to root_path if current_user.user_role =="am"
     end
 end

@@ -4,7 +4,7 @@
     </div>
 
 <% else %>
-    <% course.exercises.chrono.each do |exercise| %>
+    <% course.exercises.ordered.each do |exercise| %>
         <% if exercise.completed_by(current_user) %>
             <%= render partial: "courses/shared/completed", locals: {exercise: exercise} %>
         <% else %>

@@ -91,13 +91,13 @@ module ApplicationHelper
 
     def current_user_status
         if current_user.user_role == "Student"
-        return "student"
+        return "yclass_student"
         elsif current_user.user_role == "Teacher"
-        return "teacher"
+        return "yclass_teacher"
         elsif current_user.user_role == "Ambassador"
-        return "am"
+        return "yclass_am"
         elsif current_user.user_role == "Team"
-        return "team"
+        return "yclass_team"
         else
         return ""
         end

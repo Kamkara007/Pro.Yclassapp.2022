@@ -1,4 +1,6 @@
 class ApplicationController < ActionController::Base
+    
+    rescue_from ActiveRecord::RecordNotFound, with: :render_404
     protect_from_forgery with: :exception, prepend: true
 
     include DeviseWhitelist

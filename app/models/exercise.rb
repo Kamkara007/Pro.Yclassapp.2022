@@ -14,9 +14,6 @@ class Exercise < ApplicationRecord
   validates :user_id, presence: { message: "L'exercice doit etre associer obligatoirement a une personne" }
   validates :course_id, presence: { message: "L'exercice doit etre associer obligatoirement a une leçon" }
   
-  #############  SCOPE ##############
-  scope :ready, -> { where("published == true")}
-  scope :chrono, -> { order(created_at: :desc)}
   
   ########### FIND EXERCISE COMPLETED BY USER #########
   def completed_by(user)

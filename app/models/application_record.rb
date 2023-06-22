@@ -1,3 +1,6 @@
+require_dependency 'concerns/lnclass_scoped'
+
+
 class ApplicationRecord < ActiveRecord::Base
   primary_abstract_class
 
@@ -5,6 +8,6 @@ class ApplicationRecord < ActiveRecord::Base
   self.implicit_order_column = "created_at"
   
   ############### SLUGGED ####################
-  include ItemsScoped
+  include LnclassScoped
   
 end
