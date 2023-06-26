@@ -16,7 +16,8 @@
                     <%= link_to 'Bac Blancs', root_path %>
                 </li>
                 <li class="py-2">
-                    <%= link_to 'Bac 2023', root_path %>
+    
+                    <button class="" onclick="planbac2023.showModal()">Plan Bac 2023</button>
                 </li>
 
                 <li>
@@ -51,9 +52,7 @@
                 <%= link_to 'Bac Blancs', root_path %>
             </li>
             <li>
-               
                 <button class="" onclick="planbac2023.showModal()">Plan Bac 2023</button>
-
             </li>
         
             <div class="avatar">
@@ -97,19 +96,18 @@
 
 
 
-<% if user_role= "Student" %>
-
+<% if current_user.user_role == "Student" %>
 <!-- Open the modal using ID.showModal() method -->
 
 <dialog id="planbac2023" class="modal modal-bottom sm:modal-middle">
     <form method="dialog" class="modal-box">
         <h3 class="font-bold text-lg">Hello!</h3>
         <p class="py-4">Acceder aux sujets du BAC 2023 en Fr, HG et Philo Série <%= current_user.level_name %> </p>
-        <div
-            class="modal-action">
-            <!-- if there is a button in form, it will close the modal -->
             <p class="">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Fuga sit alias pariatur nulla cumque quis sunt placeat commodi. Eos cum quae molestiae dolore suscipit quaerat maxime quisquam. Eos, nulla quos.</p>
-            <button class="btn">Close</button>
+        <div class="modal-action flex ">
+            <!-- if there is a button in form, it will close the modal -->
+            <button class="p-2 bg-blue-500  text-white font-semibold"> Contactez-le</button>
+            <button class="p-2 bg-red-500 text-white font-semibold">Pas interessé</button>
         </div>
     </form>
 </dialog>
