@@ -14,9 +14,9 @@ module DeviseWhitelist
         #Sign Up account params
         sign_params = [:email, :password, :first_name, :last_name, :full_name, :contact, :matricule,
             :user_role, :gender, :city_name, :level_name, :school_name,  :material_name,
-            :doublant_statut, :doublant_statut, :avatar, :slug, :referral_code ]
+            :doublant_statut, :doublant_statut, :user_plan, :avatar, :slug, :referral_code ]
 
-        devise_parameter_sanitizer.permit(:sign_in, keys: [:logged, :password])
+        devise_parameter_sanitizer.permit(:sign_in, keys: [:email, :password])
         devise_parameter_sanitizer.permit(:sign_up, keys: sign_params )
         devise_parameter_sanitizer.permit(:account_update, keys: sign_params)
     end

@@ -3,7 +3,7 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable,
-         :trackable, :authentication_keys => [:logged]
+         :trackable#, :authentication_keys => [:logged]
 
   ############### RELATIONS ####################
   has_many :courses
@@ -42,10 +42,9 @@ class User < ApplicationRecord
   def strip_custom_data
     self.contact = contact.gsub(/\s+/, "")
     if self.user_role == "Student"
-        self.matricule = matricule.gsub(/\s+/, "")
-      self.school_name = school_name.strip.downcase.capitalize
-      self.email = "#{self.matricule}@gmail.com"
-      self.password = "#{self.contact}"
+        self.matricule = "#{self.contact}"
+        self.password = "#{self.contact}"
+        self.school_name = school_name.strip.downcase.capitalize
     else 
         self.matricule = self.contact
     end
@@ -92,24 +91,24 @@ class User < ApplicationRecord
 
 
   ##################  START LOGGED  #########
-  attr_writer :logged
+  #attr_writer :logged
   
   
   ################## LOGGED  #########
 
   ## permet la connexion avec le matricule
-  def logged
-    @logged || self.matricule || self.email
-  end
+  #def logged
+    #@logged || self.matricule || self.email
+  #end
 
   ## recherche matricule ou email pour la connexion
-  def self.find_for_database_authentication(warden_conditions)
-    conditions = warden_conditions.dup
-    if (logged = conditions.delete(:logged))
-      where(conditions.to_h).where(["lower(email) = :value OR lower(matricule) = :value", { :value => logged.downcase }]).first
-    elsif conditions.has_key?(:email) || conditions.has_key?(:matricule)
-      where(conditions.to_h).first
-    end
-  end
+  #def self.find_for_database_authentication(warden_conditions)
+    #conditions = warden_conditions.dup
+    #if (logged = conditions.delete(:logged))
+      #where(conditions.to_h).where(["lower(email) = :value OR lower(matricule) = :value", { :value => logged.downcase }]).first
+    #elsif conditions.has_key?(:email) || conditions.has_key?(:matricule)
+      #where(conditions.to_h).first
+    #end
+  #end
   ##################  END LOGGED  #########
 end

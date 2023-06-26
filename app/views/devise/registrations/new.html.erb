@@ -41,16 +41,16 @@
                   <%= f.text_field :school_name, placeholder:"Ex: College Saint Michel Tiassalé", class:"ln-field" %>
                 </div>
               </div>
-              <div class="max-w-md">
-                <div class="grid grid-cols-1">
-                  <span class="">N° matricule:</span>
-                  <%= f.text_field :matricule, placeholder:"Ex: 13235330y", class:"ln-field" %>
-                </div>
-              </div>
               <div class="py-2 max-w-md">
                 <div class="grid grid-cols-1 gap-2">
                   <span class="">Série:</span>
                   <%= f.select(:level_name, @levels.map{|level| [level.title]}, { prompt: "choisir" }, class:"ln-select border border-black") %>
+                </div>
+              </div>
+              <div class="max-w-md">
+                <div class="grid grid-cols-1">
+                  <span class="">Adresse Email:</span>
+                  <%= f.text_field :email, placeholder:"Ex: Koffi@gmail.com", class:"ln-field" %>
                 </div>
               </div>
               <div class="max-w-md">
