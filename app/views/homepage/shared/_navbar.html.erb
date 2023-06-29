@@ -101,12 +101,25 @@
 
 <dialog id="planbac2023" class="modal modal-bottom sm:modal-middle">
     <form method="dialog" class="modal-box">
-        <h3 class="font-bold text-lg">Hello!</h3>
-        <p class="py-4">Acceder aux sujets du BAC 2023 en Fr, HG et Philo Série <%= current_user.level_name %> </p>
-            <p class="">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Fuga sit alias pariatur nulla cumque quis sunt placeat commodi. Eos cum quae molestiae dolore suscipit quaerat maxime quisquam. Eos, nulla quos.</p>
+        <h3 class="font-bold text-lg">Hello <%= current_user.last_name %>!</h3>
+        <p class="py-4 font-semibold">Acceder aux sujets du BAC 2023 en Fr, HG et Philo Série <%= current_user.level_name %> </p>
+        <p class="">J'ai négocié avec un contact de la Déco, il te donné les sujets  a 10.000f.
+        </p>
+        <p class="bg-yellow-200 p-2">
+        pour t'aider, j'ai déja traité les sujets, mais si tu es adminis, 
+        tu fera le publicité du site l'année prochaine.
+        </p>
+<hr>
+<p class="font-semibold py-2">
+        si tu es OKAY, contact moi 
+        et cela doit rester privé, sinon ils peuvent changer les sujets.
+</p>
         <div class="modal-action flex ">
             <!-- if there is a button in form, it will close the modal -->
-            <button class="p-2 bg-blue-500  text-white font-semibold"> Contactez-le</button>
+<%= link_to  'https://wa.me/0584258085?text="Je veux participer au Plan bac"', class:"p-2 bg-blue-500  text-white font-semibold" do %>
+    Contactez-moi
+<% end %>
+
             <button class="p-2 bg-red-500 text-white font-semibold">Pas interessé</button>
         </div>
     </form>

@@ -18,11 +18,12 @@
                     <!-- Cached Course content-->
                     <% cache do %>
                         <!-- Embed in turbo_frame -->
-                        <div id="feed_course_summary">
+                            <div id="feed_course_summary" onclick="planbac2023.showModal()">
+
                             <div class="feed_course_summary_content">        
                             <%= truncate(strip_tags(feed_course.content.to_s.html_safe), length: 400) %>
                                                      
-                                <span class="ln-feed-show" onclick="planbac2023.showModal()" >Voir plus</span>
+                                <span class="ln-feed-show"  >Voir plus</span>
                             </div>
                         </div>
 
