@@ -68,12 +68,12 @@ class DashboardController < ApplicationController
     end 
     ## STUDENT'S LIST
     def students
-      @student = User.student_sign_up.ordered
+      @students = User.student_sign_up.ordered
     end
     
     ## STUDENT'S PAID
     def students_paid
-      @students_paid = @student.user_plan.ordered
+      #@students_paid = @student.user_plan.ordered
     end
     
     ## TEACHER'S LIST

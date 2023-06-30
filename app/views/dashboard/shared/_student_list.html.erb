@@ -16,8 +16,8 @@
             </thead>
 
             <tbody class="bg-white">
-            <% cache do %>
-                <% @student_list.each do |student| %>
+            <%# cache do %>
+                <% @students.each do |student| %>
 
                     <tr>
                         <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
@@ -90,7 +90,7 @@
                     </tr>
 
                 <% end %>
-            <% end %>
+            <%# end %>
 
             </tbody>
         </table>

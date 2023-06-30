@@ -28,12 +28,12 @@
     <%#= link_to 'Export Course', course_export_path(format: :csv) , class:"font-semibold bg-red-300 rounded-lg p-2"%></h3>
 
 
-                        <% if current_user_status == "team" %> 
+                        <%# if current_user_status == "team" %> 
                         
-                            <% cache do %>
+                            <%# cache do %>
                                 <%= render "dashboard/shared/student_list" %>            
-                            <% end %>                        
-                        <% end %>                        
+                            <%# end %>                        
+                        <%# end %>                        
                     </div>
                 </div>
             </main>
