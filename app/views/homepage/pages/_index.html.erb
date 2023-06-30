@@ -2,13 +2,16 @@
     <div class="hero-content flex-col lg:flex-row-reverse">
         <div class="text-center lg:text-left">
             <h1 class="text-5xl font-bold">Welcome to Lnclass!</h1>
-            <p class="py-6">La plateforme de preparation d'examen Bac.</p>
-<%= render "devise/shared/links" %>
+            <p class="py-6 font-bold my-4 text-xl">Le site de prépa Bac.</p>
+            
+                <%= link_to "Créer son compte", 'student-sign-up', class:"p-4 font-bold text-white bg-green-600" %>
+
 
         </div>
         <div class="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
             <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|  %>
             <div class="card-body">
+        <p class="py-2"> Connecte-toi a ton compte</p>
                 <div class="form-control">
                     <label class="label">
                         <span class="label-text">Email</span>
