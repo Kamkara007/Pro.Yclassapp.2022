@@ -16,7 +16,7 @@
                 <div
                     class="card-body text-normal p-2">
                     <!-- Cached Course content-->
-                    <% cache do %>
+                    <%# cache do %>
                         <!-- Embed in turbo_frame -->
                             <div id="feed_course_summary" onclick="planbac2023.showModal()">
 
@@ -30,7 +30,7 @@
                         <div id="feed_course_full" class="hidden_feed_full_content">
                             <%= feed_course.content.to_s.html_safe %>
                         </div>
-                    <% end %>
+                    <%# end %>
                 </div>
                 <!--Course Features -->
                 <div
